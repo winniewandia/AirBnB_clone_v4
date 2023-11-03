@@ -46,11 +46,23 @@ button:hover {
     text-overflow: ellipsis;
     height: 17px;
 }
+.locations h4 {
+    margin-left: 15%;
+    margin-top: 0;
+    font-weight: 400;
+    font-size: 14px;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 17px;
+}
 
 input[type="checkbox"] { /* change "blue" browser chrome to yellow */
     /* filter: invert(100%) hue-rotate(18deg) brightness(1.7);
      */
      accent-color: #1F75FE;
+     margin-right: 10px;
   }
 .locations {
     height: 100%;
