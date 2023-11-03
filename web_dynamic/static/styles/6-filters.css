@@ -40,7 +40,18 @@ button:hover {
     margin-top: 0;
     font-weight: 400;
     font-size: 14px;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 17px;
 }
+
+input[type="checkbox"] { /* change "blue" browser chrome to yellow */
+    /* filter: invert(100%) hue-rotate(18deg) brightness(1.7);
+     */
+     accent-color: #1F75FE;
+  }
 .locations {
     height: 100%;
     width: 25%;
@@ -67,7 +78,6 @@ button:hover {
 .popover::-webkit-scrollbar{
     width: 0px;
 }
-
 
 .amenities .popover {
     padding: 10px 0;
