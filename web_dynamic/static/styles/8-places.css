@@ -32,7 +32,7 @@
     align-items: flex-start;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: space-between;
     width: 390px;
     height: 100%;
     padding: 20px;
@@ -49,6 +49,7 @@
     display: flex;
     justify-content: space-between;
     margin-top: -2%;
+    width: 100%;
 }
 
 .title_box h2 {
@@ -79,6 +80,7 @@
     border-top: 1px solid #DDDDDD;
     border-bottom: 1px solid #DDDDDD;
     margin-bottom: 5%;
+    width: 90%;
 }
 
 .information div {
@@ -109,8 +111,8 @@
 }
 .reviews {
     margin-top: 40px;
-    
-    
+
+
 }
 .reviews h2 {
     border-bottom:  #DDDDDD 1px;
@@ -119,6 +121,7 @@
 }
 .reviews ul {
     list-style: none;
+    padding-left: 0;
 }
 .reviews h3 {
     font-size: 14px;
@@ -127,4 +130,8 @@
 .reviews p {
     font-size: 12px;
     text-align: left;
+}
+.reviews span {
+text-decoration-line: underline;
+
 }
