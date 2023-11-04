@@ -61,7 +61,7 @@ button:hover {
 input[type="checkbox"] { /* change "blue" browser chrome to yellow */
     /* filter: invert(100%) hue-rotate(18deg) brightness(1.7);
      */
-     accent-color: #1F75FE;
+     accent-color: #FF5A5F;
      margin-right: 10px;
   }
 .locations {

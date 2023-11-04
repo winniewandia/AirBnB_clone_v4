@@ -1,7 +1,7 @@
 $(document).ready(function () {
-  const apiPORT = '5001';
-  const apiIP = '127.0.0.1';
-  const apiURL = `http://${apiIP}:${apiPORT}/api/v1`;
+  const portAPI = '5001';
+  const ipAPI = window.location.hostname;
+  const urlAPI = `http://${ipAPI}:${portAPI}/api/v1`;
 
   function formatDate (datetimeText) {
     // Convert the datetime string to a JavaScript Date object
@@ -30,17 +30,18 @@ $(document).ready(function () {
 
     return formattedDate;
   }
-  function myFn (obj) {
+  function showReviews (obj) {
     const placeId = $(obj).attr('id');
     console.log(placeId);
     $(obj).text(function (i, text) {
       if (text === 'show') {
         $.ajax({
-          url: `${apiURL}/places/${placeId}/reviews`,
+          url: `${urlAPI}/places/${placeId}/reviews`,
           type: 'GET',
           success: function (data) {
+            $('#rvw-' + placeId).html(data.length + ' Reviews');
             data.forEach(function (review) {
-              $.get(`http://127.0.0.1:5001/api/v1/users/${review.user_id}`, function (user) {
+              $.get(`${urlAPI}/users/${review.user_id}`, function (user) {
                 const datetimeText = review.updated_at;
                 $('#review-' + placeId).append(`<h3>From ${user.first_name} the ${formatDate(datetimeText)}</h3>`);
                 $('#review-' + placeId).append(`<p>${review.text}</p>`);
@@ -51,6 +52,7 @@ $(document).ready(function () {
         return 'hide';
       } else {
         $('#review-' + placeId).empty();
+        $('#rvw-' + placeId).html('Reviews');
         return 'show';
       }
     });
@@ -71,7 +73,7 @@ $(document).ready(function () {
       ${place.description}
         </div>
         <div class="reviews">
-        <h2>Reviews <span id="${place.id}" class="spanReviews" >show</span></h2>
+        <h2><h2 id="rvw-${place.id}">Reviews</h2><span id="${place.id}" class="spanReviews" >show</span></h2>
         <ul>
             <li class="reviewsText" id="review-${place.id}">
             </li>
@@ -99,7 +101,7 @@ $(document).ready(function () {
     $('.amenities h4').text(str);
   });
   $.ajax({
-    url: `${apiURL}/status/`,
+    url: `${urlAPI}/status/`,
     success: function () {
       $('#api_status').addClass('available');
       $('#api_status').css('background-color', '#ff545f');
@@ -110,7 +112,7 @@ $(document).ready(function () {
     }
   });
   $.ajax({
-    url: `${apiURL}/places_search/`,
+    url: `${urlAPI}/places_search/`,
     type: 'POST',
     data: '{}',
     dataType: 'json',
@@ -120,7 +122,7 @@ $(document).ready(function () {
         $('section.places').append(newArticleFn(place));
       });
       $('.spanReviews').click(function () {
-        myFn(this);
+        showReviews(this);
       });
     },
     error: function (error) {
@@ -150,7 +152,7 @@ $(document).ready(function () {
     const Ids = { amenities: Object.keys(myDict), states: Object.keys(stateDict), cities: Object.keys(cityDict) };
     $('section.places').empty();
     $.ajax({
-      url: `${apiURL}/places_search/`,
+      url: `${urlAPI}/places_search/`,
       type: 'POST',
       data: JSON.stringify(Ids),
       dataType: 'json',
@@ -160,7 +162,7 @@ $(document).ready(function () {
           $('section.places').append(newArticleFn(place));
         });
         $('.spanReviews').click(function () {
-          myFn(this);
+          showReviews(this);
         });
       }
     });
